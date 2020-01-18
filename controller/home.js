@@ -10,7 +10,6 @@ exports.home=(req,res)=>{
 exports.homeproduct=(req,res,next)=>{
    Userblog.find()
    .then(blogs=>{
-       console.log(blogs)
        res.render('blog/blogs.ejs',{
            pagetitle:'All Blogs',
            blog:blogs
@@ -34,5 +33,32 @@ exports.blogdetails=(req,res)=>{
         })
     })
     .catch()
+
+}
+let data=[]
+exports.getsearch=(req,res,next)=>{
+    console.log(data)
+    if (data.length > 0) {
+        res.render('search',{
+            pagetitle:'Search ',
+            data:data
+
+        })
+    }
+
+
+}
+
+exports.postsearch=(req,res,next)=>{
+    const search=req.body.search
+    Userblog.find({title:search})
+    .then(result=>{
+        data.push(...result)
+        return res.redirect('/search')
+    })
+    .catch(err=>console.log(err))
+   
+
+
 
 }

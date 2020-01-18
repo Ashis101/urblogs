@@ -10,7 +10,11 @@ route.get('/blogs',blogcontroller.homeproduct)
 
 route.get('/blogs/:blogid',routepro,blogcontroller.blogdetails)
 
-
+route.get('/search',blogcontroller.getsearch)
+route.post('/search',blogcontroller.postsearch)
+route.get('/about',(req,res)=>{
+    res.render('about')
+})
 
 module.exports=route
 

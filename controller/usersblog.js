@@ -90,7 +90,6 @@ exports.postedit=(req,res)=>{
         const blogid=req.params.id
        Userblog.findById(blogid)
        .then(ublog=>{
-        console.log(ublog)
            if(ublog.userid.toString() != req.user._id.toString()){
                return res.redirect('/')
            }
